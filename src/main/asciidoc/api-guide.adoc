@@ -1,0 +1,41 @@
+= Product Recommendation API Guide
+Tomas Ave;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+[[resources]]
+= Resources
+
+
+[[resources-recommendations]]
+== Recommendations
+
+A recommendation includes all recommendation information.
+
+
+[[resources-recommendations-get]]
+=== Get a recommendation
+
+A `GET` request is used to retrieve a recommendation
+
+
+==== Path parameters
+
+include::{snippets}/get-game-recommendations-by-customer/path-parameters.adoc[]
+
+
+==== Request parameters
+
+include::{snippets}/get-game-recommendations-by-customer/request-parameters.adoc[]
+
+
+==== Example request
+
+include::{snippets}/get-game-recommendations-by-customer/curl-request.adoc[]
+
+
+==== Example response
+
+include::{snippets}/get-game-recommendations-by-customer/http-response.adoc[]
+

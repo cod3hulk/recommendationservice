@@ -10,11 +10,11 @@ public class RecommendationController
 {
 
     @GetMapping("/customers/{customerId}/games/recommendations")
-    public void getGameRecommendationsByCustomer(
+    public String getGameRecommendationsByCustomer(
         @PathVariable("customerId") Long customerId,
         @RequestParam("count") Long count
     )
     {
-
+        return "recommendation";
     }
 }
