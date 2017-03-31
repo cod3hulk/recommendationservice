@@ -19,23 +19,23 @@ A recommendation includes all recommendation information.
 
 A `GET` request is used to retrieve a recommendation
 
+==== Example request
+
+include::{snippets}/get-game-recommendations-by-customer/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/get-game-recommendations-by-customer/http-response.adoc[]
 
 ==== Path parameters
 
 include::{snippets}/get-game-recommendations-by-customer/path-parameters.adoc[]
 
-
 ==== Request parameters
 
 include::{snippets}/get-game-recommendations-by-customer/request-parameters.adoc[]
 
+==== Response fields
 
-==== Example request
-
-include::{snippets}/get-game-recommendations-by-customer/curl-request.adoc[]
-
-
-==== Example response
-
-include::{snippets}/get-game-recommendations-by-customer/http-response.adoc[]
+include::{snippets}/get-game-recommendations-by-customer/response-fields.adoc[]
 

@@ -12,6 +12,8 @@ import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.jayway.restassured.RestAssured.given;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
@@ -51,6 +53,11 @@ public class RecommendationControllerTest
                 ),
                 pathParameters(
                     parameterWithName("customerId").description("Customer which recommendations are retrieved")
+                ),
+                responseFields(
+                    fieldWithPath("[]").description("Array of recommendations"),
+                    fieldWithPath("[].id").description("ID of the recommended game"),
+                    fieldWithPath("[].name").description("Name of the recommended game")
                 )
             ))
         .when()
