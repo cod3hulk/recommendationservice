@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.restdocs.JUnitRestDocumentation;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -42,6 +43,7 @@ public class RecommendationControllerTest
 
 
     @Test
+    @Sql("classpath:db/test-recommendation-data.sql")
     public void getGameRecommendationsByCustomer() throws Exception
     {
         // @formatter:off
@@ -57,7 +59,7 @@ public class RecommendationControllerTest
                 responseFields(
                     fieldWithPath("[]").description("Array of recommendations"),
                     fieldWithPath("[].id").description("ID of the recommended game"),
-                    fieldWithPath("[].name").description("Name of the recommended game")
+                    fieldWithPath("[].game").description("Name of the recommended game")
                 )
             ))
         .when()

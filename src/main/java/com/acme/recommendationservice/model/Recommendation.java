@@ -5,13 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Data;
 
-@Entity
 @Data
-public class Game
+@Entity
+public class Recommendation
 {
     @Id
     @GeneratedValue
     private Long id;
-
-    private String name;
+    private Long customerId;
+    private String game;
 }
