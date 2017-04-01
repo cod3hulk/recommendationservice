@@ -2,14 +2,17 @@ package com.acme.recommendationservice.controller;
 
 import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.repository.RecommendationRepository;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class RecommendationController
@@ -37,5 +40,10 @@ public class RecommendationController
         return recommendationRepository.findByCustomerId(customerId, pageable);
     }
 
-    // TODO provide CSV upload
+
+    @PostMapping("/recommendations")
+    public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException
+    {
+        System.out.println(new String(file.getBytes()));
+    }
 }
