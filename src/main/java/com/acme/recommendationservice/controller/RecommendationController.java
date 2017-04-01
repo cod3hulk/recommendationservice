@@ -2,7 +2,7 @@ package com.acme.recommendationservice.controller;
 
 import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.repository.RecommendationRepository;
-import java.io.IOException;
+import com.acme.recommendationservice.service.RecommendationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,16 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-public class RecommendationController
+class RecommendationController
 {
 
     private final RecommendationRepository recommendationRepository;
 
+    private final RecommendationService recommendationService;
+
 
     @Autowired
-    public RecommendationController(RecommendationRepository recommendationRepository)
+    public RecommendationController(
+        RecommendationRepository recommendationRepository,
+        RecommendationService recommendationService
+    )
     {
         this.recommendationRepository = recommendationRepository;
+        this.recommendationService = recommendationService;
     }
 
 
@@ -42,8 +48,8 @@ public class RecommendationController
 
 
     @PostMapping("/recommendations")
-    public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException
+    public void uploadFile(@RequestParam("file") MultipartFile file)
     {
-        System.out.println(new String(file.getBytes()));
+        recommendationService.saveCsvData(file);
     }
 }

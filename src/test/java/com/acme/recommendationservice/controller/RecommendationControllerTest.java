@@ -1,6 +1,7 @@
 package com.acme.recommendationservice.controller;
 
 import com.acme.recommendationservice.repository.RecommendationRepository;
+import com.acme.recommendationservice.service.RecommendationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class RecommendationControllerTest
     @MockBean
     private RecommendationRepository recommendationRepository;
 
+    @MockBean
+    private RecommendationService recommendationService;
+
 
     @Test
     public void getRecommendationsByCustomer() throws Exception
@@ -44,11 +48,15 @@ public class RecommendationControllerTest
     public void uploadFile() throws Exception
     {
         // @formatter:off
+        String csvData =
+            "\"CUSTOMER_NUMBER\",\"RECOMMENDATION_ACTIVE\",\"REC2\",\"REC2\",\"REC3\", REC4\",\"REC5\",\"REC6\",\"REC7\",\"REC8\",\"REC9\",\"REC10\"\n" +
+            "\"111111\",\"true\",\"bingo\",\"cashwheel\",\"cashbuster\",\"brilliant\",\"citytrio\",\"crossword\",\"sevenwins\",\"sudoku\",\"sofortlotto\",\"hattrick\"\n";
+
         MockMultipartFile multipartFile = new MockMultipartFile(
             "file",
             "test.txt",
             "text/plain",
-            "Spring Framework".getBytes());
+            csvData.getBytes());
 
         this.mvc.perform(
             fileUpload("/recommendations")
