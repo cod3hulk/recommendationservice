@@ -1,10 +1,11 @@
 package com.acme.recommendationservice.controller;
 
 import com.acme.recommendationservice.model.Game;
-import java.util.Arrays;
-import java.util.HashMap;
+import com.acme.recommendationservice.repository.GameRepository;
 import java.util.List;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,32 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecommendationController
 {
 
-    private static final Map<Long, List<Game>> recommendationsByCustomer = new HashMap<>();
+    private final GameRepository gameRepository;
 
-    static
+
+    @Autowired
+    public RecommendationController(GameRepository gameRepository)
     {
-        Game bingo = new Game();
-        bingo.setId(1L);
-        bingo.setName("bingo");
-
-        Game cashwheel = new Game();
-        cashwheel.setId(2L);
-        cashwheel.setName("cashwheel");
-
-        Game cashbuster = new Game();
-        cashbuster.setId(3L);
-        cashbuster.setName("cashbuster");
-
-        recommendationsByCustomer.put(1L, Arrays.asList(bingo, cashwheel));
-        recommendationsByCustomer.put(2L, Arrays.asList(cashbuster, cashwheel));
+        this.gameRepository = gameRepository;
     }
+
 
     @GetMapping("/customers/{customerId}/games/recommendations")
     public List<Game> getRecommendationsByCustomer(
         @PathVariable("customerId") Long customerId,
-        @RequestParam("count") Long count
+        @RequestParam("count") Integer count
     )
     {
-        return recommendationsByCustomer.get(customerId);
+        Pageable pageable = new PageRequest(0, count);
+        return gameRepository.findByCustomerId(customerId, pageable);
     }
 }
