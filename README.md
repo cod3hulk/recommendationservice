@@ -16,8 +16,7 @@ The API guide is also served as static content as part of the service and can be
 `http://{HOST}/docs/api-guide.html`
 
 ## Docker Integration
-The service can be packaged as Docker image using the [Spotify docker-maven-plugin](https://github
-.com/spotify/docker-maven-plugin) 
+The service can be packaged as Docker image using the [Spotify docker-maven-plugin](https://github.com/spotify/docker-maven-plugin) 
 
 ### Create Docker image
 To create a Docker image of the service run `mvn clean package docker:build`. A running docker daemon is required for
