@@ -4,11 +4,14 @@ import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.repository.RecommendationRepository;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -55,5 +58,12 @@ public class RecommendationService
         {
             LOGGER.error("Error parsing CSV file", e);
         }
+    }
+
+
+    public List<Recommendation> findByCustomerId(Long customerId, Integer limit)
+    {
+        Pageable pageable = new PageRequest(0, limit);
+        return recommendationRepository.findByCustomerId(customerId, pageable);
     }
 }

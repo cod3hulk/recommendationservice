@@ -1,7 +1,8 @@
 package com.acme.recommendationservice.controller;
 
-import com.acme.recommendationservice.repository.RecommendationRepository;
+import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.service.RecommendationService;
+import java.util.Collections;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,21 +27,42 @@ public class RecommendationControllerTest
     private MockMvc mvc;
 
     @MockBean
-    private RecommendationRepository recommendationRepository;
-
-    @MockBean
     private RecommendationService recommendationService;
 
 
     @Test
     public void getRecommendationsByCustomer() throws Exception
     {
+        // GIVEN
+        Recommendation recommendation = new Recommendation();
+        recommendation.setId(1L);
+        recommendation.setCustomerId(1L);
+        recommendation.setActive(true);
+        recommendation.setGame("bingo");
+
+        when(recommendationService.findByCustomerId(1L, 2)).thenReturn(Collections.singletonList(recommendation));
+
+        // @formatter:off
+        // WHEN
+        this.mvc.perform(
+            get("/customers/1/games/recommendations?count=2")
+                .accept(MediaType.APPLICATION_JSON)
+        )
+        // THEN
+        .andExpect(status().isOk());
+        // @formatter:on
+    }
+
+
+    @Test
+    public void getRecommendationsByCustomer_no_recommendations_found() throws Exception
+    {
         // @formatter:off
         this.mvc.perform(
             get("/customers/1/games/recommendations?count=2")
                 .accept(MediaType.APPLICATION_JSON)
         )
-        .andExpect(status().isOk());
+        .andExpect(status().isNotFound());
         // @formatter:on
     }
 
