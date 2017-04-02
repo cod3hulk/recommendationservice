@@ -5,18 +5,24 @@ Tomas Ave;
 :source-highlighter: highlightjs
 
 [[resources]]
+= Overview
+API Guide for the Product Recommendation Service. This guide includes an overview of the supported resources and
+operations for the service.
+
+[[resources]]
 = Resources
 
 [[resources-recommendations]]
 == Recommendations
 
-A recommendation includes information about a name recommended for a given customer and if this recommendation
-is currently active for the customer.
+A Recommendation resource is a customer recommendation for a game. It includes information about the game name,
+the related customer and if the recommendation is currently active for the customer.
 
 [[resources-recommendations-get]]
 === Get recommendations by customer
 
-A `GET` request is used to retrieve active recommendations for a given customer
+A `GET` request is used to retrieve active recommendations for a given customer. If no active recommendations are found
+a `404` HTTP status code is returned.
 
 ==== Example request
 
@@ -42,7 +48,8 @@ include::{snippets}/recommendations-get-by-customer/response-fields.adoc[]
 [[resources-recommendations-upload]]
 === Upload recommendations as CSV file
 
-A multipart `POST` request is used to upload recommendation information as CSV file
+A multipart `POST` request is used to upload recommendation information as CSV file. If an error occurs while processing
+the CSV file an `500` HTTP status code is returned with a detailed error message.
 
 ==== Example request
 

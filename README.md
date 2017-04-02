@@ -4,6 +4,11 @@
 # Product Recommendation Service
 Simple product recommendation service for storing and retrieving product recommendations of customers
 
+## API Guide
+http://localhost:8080/docs/api-guide.html
+
 ## Docker Integration
 Create docker image: mvn clean package docker:build
 Run docker container: docker run --name recommendationservice -p 8080:8080 -d com.acme/recommendationservice
+
+## Database Configuration

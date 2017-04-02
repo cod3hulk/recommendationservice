@@ -67,7 +67,7 @@ public class RecommendationControllerDocumentation
                 fieldWithPath("[]").description("Array of recommendations"),
                 fieldWithPath("[].id").description("ID of the recommendation"),
                 fieldWithPath("[].customerId").description("ID of the customer the recommendation belongs to"),
-                fieldWithPath("[].name").description("Name of the recommended name"),
+                fieldWithPath("[].name").description("Name of the recommended game"),
                 fieldWithPath("[].active").description("Whether or not the recommendation is active for the customer")
             )
         );
