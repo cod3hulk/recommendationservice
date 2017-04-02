@@ -49,7 +49,7 @@ public class RecommendationControllerDocumentation
         // @formatter:off
         given(this.documentationSpec)
             .port(port)
-            .filter(document("get-game-recommendations-by-customer",
+            .filter(document("recommendations-get-by-customer",
                 requestParameters(
                     parameterWithName("count").description("Maximum count of recommendations retrieved")
                 ),
@@ -58,8 +58,10 @@ public class RecommendationControllerDocumentation
                 ),
                 responseFields(
                     fieldWithPath("[]").description("Array of recommendations"),
-                    fieldWithPath("[].id").description("ID of the recommended game"),
-                    fieldWithPath("[].game").description("Name of the recommended game")
+                    fieldWithPath("[].id").description("ID of the recommendation"),
+                    fieldWithPath("[].customerId").description("ID of the customer the recommendation belongs to"),
+                    fieldWithPath("[].name").description("Name of the recommended name"),
+                    fieldWithPath("[].active").description("Whether or not the recommendation is active for the customer")
                 )
             ))
         .when()
@@ -69,5 +71,12 @@ public class RecommendationControllerDocumentation
         // @formatter:on
     }
 
+
+    @Test
+    public void uploadReommendations() throws Exception
+    {
+        // @formatter:off
+        // @formatter:on
+    }
 
 }

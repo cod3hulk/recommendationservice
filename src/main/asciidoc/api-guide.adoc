@@ -7,35 +7,59 @@ Tomas Ave;
 [[resources]]
 = Resources
 
-
 [[resources-recommendations]]
 == Recommendations
 
-A recommendation includes all recommendation information.
-
+A recommendation includes information about a name recommended for a given customer and if this recommendation
+is currently active for the customer.
 
 [[resources-recommendations-get]]
-=== Get a recommendation
+=== Get recommendations by customer
 
-A `GET` request is used to retrieve a recommendation
+A `GET` request is used to retrieve active recommendations for a given customer
 
 ==== Example request
 
-include::{snippets}/get-game-recommendations-by-customer/curl-request.adoc[]
+include::{snippets}/recommendations-get-by-customer/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/get-game-recommendations-by-customer/http-response.adoc[]
+include::{snippets}/recommendations-get-by-customer/http-response.adoc[]
 
 ==== Path parameters
 
-include::{snippets}/get-game-recommendations-by-customer/path-parameters.adoc[]
+include::{snippets}/recommendations-get-by-customer/path-parameters.adoc[]
 
 ==== Request parameters
 
-include::{snippets}/get-game-recommendations-by-customer/request-parameters.adoc[]
+include::{snippets}/recommendations-get-by-customer/request-parameters.adoc[]
 
 ==== Response fields
 
-include::{snippets}/get-game-recommendations-by-customer/response-fields.adoc[]
+include::{snippets}/recommendations-get-by-customer/response-fields.adoc[]
 
+
+[[resources-recommendations-upload]]
+=== Upload recommendations as CSV file
+
+A multipart `POST` request is used to upload recommendation information as CSV file
+
+==== Example request
+
+include::{snippets}/recommendations-upload-csv/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/recommendations-upload-csv/http-response.adoc[]
+
+==== Path parameters
+
+include::{snippets}/recommendations-upload-csv/path-parameters.adoc[]
+
+==== Request parameters
+
+include::{snippets}/recommendations-upload-csv/request-parameters.adoc[]
+
+==== Response fields
+
+include::{snippets}/recommendations-upload-csv/response-fields.adoc[]

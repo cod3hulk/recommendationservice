@@ -74,7 +74,7 @@ public class RecommendationService
         {
             Recommendation recommendation = new Recommendation();
             recommendation.setCustomerId(customerId);
-            recommendation.setGame(record.get("REC" + i));
+            recommendation.setName(record.get("REC" + i));
             recommendation.setActive(recommendationActive);
             result.add(recommendation);
         }

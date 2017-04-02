@@ -13,6 +13,6 @@ public class Recommendation
     @GeneratedValue
     private Long id;
     private Long customerId;
-    private String game;
+    private String name;
     private boolean active;
 }

@@ -56,52 +56,52 @@ public class RecommendationServiceTest
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("bingo"))
+                hasProperty("name", is("bingo"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("cashwheel"))
+                hasProperty("name", is("cashwheel"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("brilliant"))
+                hasProperty("name", is("brilliant"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("citytrio"))
+                hasProperty("name", is("citytrio"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("crossword"))
+                hasProperty("name", is("crossword"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("sevenwins"))
+                hasProperty("name", is("sevenwins"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("sudoku"))
+                hasProperty("name", is("sudoku"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("sofortlotto"))
+                hasProperty("name", is("sofortlotto"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("hattrick"))
+                hasProperty("name", is("hattrick"))
             ),
             allOf(
                 hasProperty("customerId", is(customerId)),
                 hasProperty("active", is(true)),
-                hasProperty("game", is("cashbuster"))
+                hasProperty("name", is("cashbuster"))
             )
         ));
     }

@@ -39,7 +39,7 @@ public class RecommendationControllerTest
         recommendation.setId(1L);
         recommendation.setCustomerId(1L);
         recommendation.setActive(true);
-        recommendation.setGame("bingo");
+        recommendation.setName("bingo");
 
         when(recommendationService.findByCustomerId(1L, 2)).thenReturn(Collections.singletonList(recommendation));
 
