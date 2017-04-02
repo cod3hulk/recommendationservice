@@ -35,11 +35,12 @@ public class RecommendationControllerTest
     public void getRecommendationsByCustomer() throws Exception
     {
         // GIVEN
-        Recommendation recommendation = new Recommendation();
-        recommendation.setId(1L);
-        recommendation.setCustomerId(1L);
-        recommendation.setActive(true);
-        recommendation.setName("bingo");
+        Recommendation recommendation = Recommendation.builder()
+            .id(1L)
+            .customerId(1L)
+            .active(true)
+            .name("bingo")
+            .build();
 
         when(recommendationService.findByCustomerId(1L, 2)).thenReturn(Collections.singletonList(recommendation));
 
