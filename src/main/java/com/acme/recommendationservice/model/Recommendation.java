@@ -14,4 +14,5 @@ public class Recommendation
     private Long id;
     private Long customerId;
     private String game;
+    private boolean active;
 }

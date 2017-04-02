@@ -38,11 +38,13 @@ public class RecommendationService
             parser.getRecords().forEach(record ->
                 {
                     Long customerId = Long.valueOf(record.get("CUSTOMER_NUMBER"));
+                    boolean recommendationActive = Boolean.valueOf(record.get("RECOMMENDATION_ACTIVE"));
                     for (int i = 1; i <= 10; i++)
                     {
                         Recommendation recommendation = new Recommendation();
-                        recommendation.setId(customerId);
+                        recommendation.setCustomerId(customerId);
                         recommendation.setGame(record.get("REC" + i));
+                        recommendation.setActive(recommendationActive);
                         recommendationRepository.save(recommendation);
                     }
 
