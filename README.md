@@ -33,7 +33,7 @@ database can be easily used by setting the `spring.datasource.url`, `spring.data
 properties in the `application.properties`. If you want to use another database you also need to
 provide the database driver as maven dependency. 
 
-## Notes
+##  Additional Notes
 The service currently only uses a single table for storing the relevant information. If the recommendation data gets 
 more complex (e.g. additional information about the game) it might be a better solution to split the data into different
 models and tables.
