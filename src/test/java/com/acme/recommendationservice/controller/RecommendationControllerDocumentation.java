@@ -101,7 +101,7 @@ public class RecommendationControllerDocumentation
             csvData.getBytes());
 
         this.mockMvc.perform(
-            fileUpload("/recommendations")
+            fileUpload("/recommendations/upload")
                 .file(multipartFile)
         )
             .andExpect(status().isOk())

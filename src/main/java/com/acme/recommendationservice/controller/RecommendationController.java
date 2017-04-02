@@ -43,7 +43,7 @@ class RecommendationController
     }
 
 
-    @PostMapping("/recommendations")
+    @PostMapping("/recommendations/upload")
     public void uploadReommendations(@RequestParam("file") MultipartFile file)
     {
         recommendationService.saveCsvData(file);

@@ -88,7 +88,7 @@ public class RecommendationControllerTest
 
         // WHEN
         this.mvc.perform(
-            fileUpload("/recommendations")
+            fileUpload("/recommendations/upload")
                 .file(multipartFile)
         )
         // THEN
