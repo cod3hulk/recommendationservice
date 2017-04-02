@@ -1,6 +1,6 @@
 package com.acme.recommendationservice.service;
 
-import com.acme.recommendationservice.exception.RecommendationCsvException;
+import com.acme.recommendationservice.exception.RecommendationCsvError;
 import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.repository.RecommendationRepository;
 import java.io.InputStreamReader;
@@ -59,7 +59,7 @@ public class RecommendationService
         catch (Exception e)
         {
             LOGGER.error("Error processing recommendations csv file", e);
-            throw new RecommendationCsvException(e);
+            throw new RecommendationCsvError(e);
         }
     }
 
