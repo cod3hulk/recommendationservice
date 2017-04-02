@@ -1,5 +1,6 @@
 package com.acme.recommendationservice.service;
 
+import com.acme.recommendationservice.exception.RecommendationCsvError;
 import com.acme.recommendationservice.model.Recommendation;
 import com.acme.recommendationservice.repository.RecommendationRepository;
 import java.util.List;
@@ -16,8 +17,10 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RecommendationServiceTest
@@ -104,6 +107,30 @@ public class RecommendationServiceTest
                 hasProperty("name", is("cashbuster"))
             )
         ));
+    }
+
+
+    @Test(expected = RecommendationCsvError.class)
+    public void saveCsvData_with_exception() throws Exception
+    {
+        // GIVEN
+        String csvData =
+            "\"CUSTOMER_NUMBER\",\"RECOMMENDATION_ACTIVE\",\"REC1\",\"REC2\",\"REC3\",\"REC4\",\"REC5\",\"REC6\",\"REC7\",\"REC8\",\"REC9\",\"REC10\"\n" +
+                "\"111111\",\"true\",\"bingo\",\"cashwheel\",\"cashbuster\",\"brilliant\",\"citytrio\",\"crossword\",\"sevenwins\",\"sudoku\",\"sofortlotto\",\"hattrick\"";
+
+        MockMultipartFile multipartFile = new MockMultipartFile(
+            "file",
+            "test.txt",
+            "text/plain",
+            csvData.getBytes());
+
+        when(recommendationRepository.save(anyList())).thenThrow(new RuntimeException("Error saving recommendations"));
+
+        // WHEN
+        objectUnderTest.saveCsvData(multipartFile);
+
+        // THEN
+        // expect RecommendationCsvError
     }
 
 }
