@@ -40,3 +40,6 @@ models and tables.
 
 The CSV upload is currently run synchronous. For large CSV files it might be a better solution to run the processing
 asynchronous or using some kind of batch framework (e.g. [Spring Batch](http://projects.spring.io/spring-batch/))
+
+The service is implemented using [Lombok](https://projectlombok.org/). It might be necessary to install the Lombok 
+plugin for your IDE to avoid compilation issues. Commmand-line runs out of the box. 
