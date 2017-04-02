@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
@@ -52,5 +53,24 @@ public class RecommendationRepositoryTest
 
         // THEN
         assertThat(recommendations, hasSize(2));
+    }
+
+
+    @Test(expected = DataIntegrityViolationException.class)
+    @Sql("classpath:db/test-recommendation-data.sql")
+    public void save_with_unique_constraint_violation()
+    {
+        // GIVEN
+        Recommendation recommendation = Recommendation.builder()
+            .customerId(1L)
+            .name("bingo")
+            .active(false)
+            .build();
+
+        // WHEN
+        objectUnderTest.save(recommendation);
+
+        // THEN
+        // expect unique constraint violation
     }
 }
