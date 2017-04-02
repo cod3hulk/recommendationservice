@@ -25,7 +25,7 @@ public class RecommendationRepositoryTest
 
     @Test
     @Sql("classpath:db/test-recommendation-data.sql")
-    public void findByCustomerId()
+    public void findByCustomerId_with_limit()
     {
         // GIVEN
         Long customerId = 1L;
@@ -36,5 +36,21 @@ public class RecommendationRepositoryTest
 
         // THEN
         assertThat(recommendations, hasSize(1));
+    }
+
+
+    @Test
+    @Sql("classpath:db/test-recommendation-data.sql")
+    public void findByCustomerId_with_ignoring_inactive_recommendations()
+    {
+        // GIVEN
+        Long customerId = 1L;
+        Pageable pageable = new PageRequest(0, Integer.MAX_VALUE);
+
+        // WHEN
+        List<Recommendation> recommendations = objectUnderTest.findByCustomerId(customerId, pageable);
+
+        // THEN
+        assertThat(recommendations, hasSize(2));
     }
 }
