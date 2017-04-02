@@ -47,10 +47,10 @@ public class RecommendationServiceTest
         objectUnderTest.saveCsvData(multipartFile);
 
         // THEN
-        ArgumentCaptor<Recommendation> captor = ArgumentCaptor.forClass(Recommendation.class);
-        verify(recommendationRepository, times(10)).save(captor.capture());
+        ArgumentCaptor<List> captor = ArgumentCaptor.forClass(List.class);
+        verify(recommendationRepository, times(1)).save(captor.capture());
 
-        List<Recommendation> recommendations = captor.getAllValues();
+        List<Recommendation> recommendations = captor.getValue();
         long customerId = 111111L;
         assertThat(recommendations, containsInAnyOrder(
             allOf(
