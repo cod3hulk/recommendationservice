@@ -46,20 +46,22 @@ A multipart `POST` request is used to upload recommendation information as CSV f
 
 ==== Example request
 
-include::{snippets}/recommendations-upload-csv/curl-request.adoc[]
+include::{snippets}/recommendations-upload/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/recommendations-upload-csv/http-response.adoc[]
+include::{snippets}/recommendations-upload/http-response.adoc[]
 
-==== Path parameters
+==== Example file
+[source,csv,options="nowrap"]
+----
+"CUSTOMER_NUMBER","RECOMMENDATION_ACTIVE","REC1","REC2","REC3", "REC4","REC5","REC6","REC7","REC8","REC9","REC10"
+"111111","true","bingo","cashwheel","cashbuster","brilliant","citytrio","crossword","sevenwins","sudoku","sofortlotto","hattrick"
+"111112","false","brilliant","citytrio","crossword","sevenwins","sudoku","sofortlotto","hattrick","bingo","cashwheel","cashbuster"
 
-include::{snippets}/recommendations-upload-csv/path-parameters.adoc[]
+----
 
-==== Request parameters
+==== Request parts
 
-include::{snippets}/recommendations-upload-csv/request-parameters.adoc[]
+include::{snippets}/recommendations-upload/request-parts.adoc[]
 
-==== Response fields
-
-include::{snippets}/recommendations-upload-csv/response-fields.adoc[]

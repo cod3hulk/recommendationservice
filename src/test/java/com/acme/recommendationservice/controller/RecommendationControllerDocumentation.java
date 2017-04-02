@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.restdocs.JUnitRestDocumentation;
 import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.jdbc.Sql;
@@ -20,8 +21,11 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.partWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParts;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -77,10 +81,31 @@ public class RecommendationControllerDocumentation
 
 
     @Test
-    public void uploadReommendations() throws Exception
+    public void uploadRecommendations() throws Exception
     {
-        // @formatter:off
-        // @formatter:on
+        RestDocumentationResultHandler document = document(
+            "recommendations-upload",
+            requestParts(
+                partWithName("file").description("CSV file with recommendations")
+            )
+        );
+
+        String csvData =
+            "\"CUSTOMER_NUMBER\",\"RECOMMENDATION_ACTIVE\",\"REC1\",\"REC2\",\"REC3\",\"REC4\",\"REC5\",\"REC6\",\"REC7\",\"REC8\",\"REC9\",\"REC10\"\n" +
+                "\"111111\",\"true\",\"bingo\",\"cashwheel\",\"cashbuster\",\"brilliant\",\"citytrio\",\"crossword\",\"sevenwins\",\"sudoku\",\"sofortlotto\",\"hattrick\"\n";
+
+        MockMultipartFile multipartFile = new MockMultipartFile(
+            "file",
+            "test.txt",
+            "text/plain",
+            csvData.getBytes());
+
+        this.mockMvc.perform(
+            fileUpload("/recommendations")
+                .file(multipartFile)
+        )
+            .andExpect(status().isOk())
+            .andDo(document);
     }
 
 }
